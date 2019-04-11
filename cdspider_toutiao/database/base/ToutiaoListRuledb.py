@@ -80,7 +80,7 @@ from cdspider.database.base import Base
 }
 
 
-class ToutiaoListRuledb(Base):
+class ToutiaoListRuleDB(Base):
 
     def insert(self, obj = {}):
         raise NotImplementedError

@@ -8,20 +8,20 @@
 :date:    2018-8-4 23:51:39
 """
 import time
-from cdspider.database.base import ToutiaoParseRuledb as BaseToutiaoParseRuledb
+from cdspider_toutiao.database.base import ToutiaoParseRuleDB as BaseToutiaoParseRuleDB
 from cdspider.database.mongo.Mongo import Mongo
 
-class ToutiaoParseRuledb(Mongo, BaseToutiaoParseRuledb):
+class ToutiaoParseRuleDB(Mongo, BaseToutiaoParseRuleDB):
     """
     parse_rule data object
     """
 
-    __tablename__ = 'ToutiaoParseRule'
+    __tablename__ = 'toutiao_parse_rule'
 
-    incr_key = 'ToutiaoParseRule'
+    incr_key = 'toutiao_parse_rule'
 
     def __init__(self, connector, table=None, **kwargs):
-        super(ToutiaoParseRuledb, self).__init__(connector, table = table, **kwargs)
+        super(ToutiaoParseRuleDB, self).__init__(connector, table = table, **kwargs)
         collection = self._db.get_collection(self.table)
         indexes = collection.index_information()
         if not 'uuid' in indexes:
@@ -40,19 +40,19 @@ class ToutiaoParseRuledb(Mongo, BaseToutiaoParseRuledb):
         obj.setdefault('status', self.STATUS_INIT)
         obj.setdefault('ctime', int(time.time()))
         obj.setdefault('utime', 0)
-        _id = super(ToutiaoParseRuledb, self).insert(setting=obj)
+        _id = super(ToutiaoParseRuleDB, self).insert(setting=obj)
         return obj['kwid']
 
     def update(self, id, obj = {}):
         obj['utime'] = int(time.time())
-        return super(ToutiaoParseRuledb, self).update(setting=obj, where={"uuid": int(id)}, multi=False)
+        return super(ToutiaoParseRuleDB, self).update(setting=obj, where={"uuid": int(id)}, multi=False)
 
-    def delete(self, id, wherer = {}):
+    def delete(self, id, where = {}):
         if not where:
             where = {'uuid': int(id)}
         else:
             where.update({'uuid': int(id)})
-        return super(ToutiaoParseRuledb, self).update(setting={"status": self.STATUS_DELETED},
+        return super(ToutiaoParseRuleDB, self).update(setting={"status": self.STATUS_DELETED},
                 where=where, multi=False)
 
     def get_detail(self, id):

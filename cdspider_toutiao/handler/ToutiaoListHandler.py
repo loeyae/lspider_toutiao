@@ -8,9 +8,7 @@
 """
 import copy
 import time
-import traceback
-import re
-from cdspider.handler import WemediaListHandler
+from cdspider_wemedia.handler import WemediaListHandler
 from cdspider.database.base import *
 from cdspider.libs.constants import *
 from cdspider.parser import ListParser, CustomParser

@@ -74,7 +74,7 @@ from cdspider.database.base import Base
     }
 }
 
-class ToutiaoParseRuledb(Base):
+class ToutiaoParseRuleDB(Base):
     """
     parse_rule data object
     """
