@@ -25,11 +25,6 @@ setup(
     entry_points = {
         'cdspider.handler': [
             'toutiao-list=cdspider_toutiao.handler:ToutiaoListHandler',
-            'toutiao-item=cdspider_toutiao.handler:ToutiaoItemHandler',
-        ],
-        'cdspider.dao.mongo': [
-            'ToutiaoParseRuleDB=cdspider_toutiao.database.mongo:ToutiaoParseRuleDB',
-            'ToutiaoListRuleDB=cdspider_toutiao.database.mongo:ToutiaoListRuleDB',
         ]
     }
 )
